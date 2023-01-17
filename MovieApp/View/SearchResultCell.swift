@@ -8,16 +8,14 @@ class SearchResultCell: UICollectionViewCell {
         pv.downloaded(from: "")
         pv.widthAnchor.constraint(equalToConstant: 150).isActive = true
         pv.heightAnchor.constraint(equalToConstant: 230).isActive = true
-//        pv.backgroundColor = .red
-        pv.layer.cornerRadius = 16
+        pv.layer.cornerRadius = 10
         pv.clipsToBounds = true
         return pv
     }()
     
     let nameLabel = UILabel(text: "Movie Name", font: .boldSystemFont(ofSize: 24))
     let yearLabel = UILabel(text: "Year", font: .boldSystemFont(ofSize: 20))
-    let ratingLabel = UILabel(text: "Rating", font: .systemFont(ofSize: 20))
-    let realeaseDate = UILabel(text: "Release date", font: .systemFont(ofSize: 20))
+    let movieType = UILabel(text: "Rating", font: .systemFont(ofSize: 20))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,8 +24,7 @@ class SearchResultCell: UICollectionViewCell {
         UIView(),
         nameLabel,
         yearLabel,
-        ratingLabel,
-        realeaseDate
+        movieType,
         ], spacing: 4)
         
         let infoAlignmentStackView = UIStackView(arrangedSubviews: [infoStackView])

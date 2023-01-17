@@ -19,6 +19,7 @@
 		B244E0642970385A00690A48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B244E0622970385A00690A48 /* LaunchScreen.storyboard */; };
 		B244E06C2970393700690A48 /* BaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244E06B2970393700690A48 /* BaseTabController.swift */; };
 		B244E0902970438000690A48 /* MovieSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244E08F2970438000690A48 /* MovieSearchController.swift */; };
+		B287C4B329755814007A727F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B287C4B229755814007A727F /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B244E0652970385A00690A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B244E06B2970393700690A48 /* BaseTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabController.swift; sourceTree = "<group>"; };
 		B244E08F2970438000690A48 /* MovieSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchController.swift; sourceTree = "<group>"; };
+		B287C4B229755814007A727F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,7 @@
 		B21C9AA229718CBA00B806A0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B244E08F2970438000690A48 /* MovieSearchController.swift */,
+				B287C4B5297561E1007A727F /* MovieSearchController */,
 				B244E06B2970393700690A48 /* BaseTabController.swift */,
 				B21C9A9D297168B800B806A0 /* BaseListController.swift */,
 			);
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				B244E0572970385700690A48 /* AppDelegate.swift */,
+				B287C4B429755819007A727F /* Service */,
 				B21C9AA129718CAC00B806A0 /* Model */,
 				B21C9AA52971903F00B806A0 /* View */,
 				B21C9AA229718CBA00B806A0 /* Controllers */,
@@ -115,6 +118,22 @@
 				B244E0652970385A00690A48 /* Info.plist */,
 			);
 			path = MovieApp;
+			sourceTree = "<group>";
+		};
+		B287C4B429755819007A727F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B287C4B229755814007A727F /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B287C4B5297561E1007A727F /* MovieSearchController */ = {
+			isa = PBXGroup;
+			children = (
+				B244E08F2970438000690A48 /* MovieSearchController.swift */,
+			);
+			path = MovieSearchController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +214,7 @@
 				B21C9AAA2971991F00B806A0 /* LayoutHelper.swift in Sources */,
 				B21C9AA0297181B900B806A0 /* SearchResult.swift in Sources */,
 				B21C9AA429718FA500B806A0 /* SearchResultCell.swift in Sources */,
+				B287C4B329755814007A727F /* Service.swift in Sources */,
 				B244E0582970385700690A48 /* AppDelegate.swift in Sources */,
 				B21C9AA82971982D00B806A0 /* VerticalStackView.swift in Sources */,
 			);
