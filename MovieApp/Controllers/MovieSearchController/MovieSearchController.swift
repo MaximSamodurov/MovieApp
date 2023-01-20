@@ -1,11 +1,16 @@
 
-
 import UIKit
 
 class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate let cellId = "cellId"
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let fullInfoMovieController = FullInfoMovieController()
+        navigationController?.pushViewController(fullInfoMovieController, animated: true)
+    }
     
     
     override func viewDidLoad() {
@@ -63,34 +68,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         }
     }
     
-//    fileprivate func fetchMovie() {
-//
-//        let url = URL(string: "https://www.omdbapi.com/?i=tt3896198&apikey=1918ecd5&s=Inception")!
-//
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//
-//            if let error = error {
-//                print("error fetching", error)
-//            }
-//
-//            guard let data = data else { return }
-//
-//            do {
-//              let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-//
-//                self.appResult = searchResult.Search
-//
-//                searchResult.Search.forEach({print($0.Year, $0.Title)})
-//
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                }
-//            } catch {
-//                print("Failed to decode", error)
-//            }
-//        } .resume()
-//    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         movieResult.count
     }
@@ -102,11 +79,10 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
         let movieResult = movieResult[indexPath.item]
-        cell.nameLabel.text = movieResult.Title
-        cell.yearLabel.text = movieResult.Year
-        cell.posterImage.downloaded(from: movieResult.Poster)
+        cell.nameLabel.text = movieResult.title
+        cell.yearLabel.text = movieResult.year
+        cell.posterImage.downloaded(from: movieResult.poster)
         cell.movieType.text = movieResult.type
         return cell
     }
-    
 }
