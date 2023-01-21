@@ -1,15 +1,14 @@
 
-
 import UIKit
 
-class FullInfoMovieCell: UICollectionViewCell {
-    
+class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayout {
     
     let fullPosterImage: UIImageView = {
         let pv = UIImageView()
         pv.downloaded(from: "")
 //        pv.widthAnchor.constraint(equalToConstant: 500).isActive = true
 //        pv.heightAnchor.constraint(equalToConstant: 400).isActive = true
+//        pv.contentMode = .scaleAspectFill
         pv.clipsToBounds = true
         pv.layer.cornerRadius = 15
         return pv
@@ -66,15 +65,21 @@ class FullInfoMovieCell: UICollectionViewCell {
         yearData
         ], spacing: 1)
         
-        
+//        translatesAutoresizingMaskIntoConstraints = false
         let textStackView = VerticalStackView(arrangedSubViews: [title, description, director, genre, actors, awards, year ], spacing: 8)
-        
         let overalStackView = VerticalStackView(arrangedSubViews: [fullPosterImage, textStackView], spacing: 5)
         addSubview(overalStackView)
+
+//        NSLayoutConstraint.activate([
+//            fullPosterImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            fullPosterImage.topAnchor.constraint(equalTo: self.topAnchor),
+//            fullPosterImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+////            fullPosterImage.heightAnchor.constraint(equalToConstant: 1000),
+//        ])
         
-        fullPosterImage.anchor(top: overalStackView.topAnchor, leading: overalStackView.leadingAnchor, bottom: textStackView.topAnchor, trailing: overalStackView.trailingAnchor)
-        overalStackView.fillSuperview(padding: .init(top: 0, left: 12, bottom: 12, right: 12))
         
+        overalStackView.fillSuperview(padding: .init(top: 0, left: 12, bottom: -100, right: 12))
+               
     }
     
     required init?(coder: NSCoder) {
