@@ -6,11 +6,13 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate let cellId = "cellId"
     
+//    var didSelectHandler: ((Search) -> ())?
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let fullInfoMovieController = FullInfoMovieController()
-        navigationController?.pushViewController(fullInfoMovieController, animated: true)
-    }
+        let items = movieResult[indexPath.item]
+        let fullInfoMovieController = FullInfoMovieController(selectedItem: items.imdbID)
+          navigationController?.pushViewController(fullInfoMovieController, animated: true)
+      }
     
     
     override func viewDidLoad() {
@@ -51,7 +53,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         })
     }
     
-    fileprivate var movieResult = [Search]()
+    var movieResult = [Search]()
     
     fileprivate func fetchMovie() {
         Service.shared.fetchData(searchTerm: "") { results, error in
@@ -83,6 +85,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         cell.yearLabel.text = movieResult.year
         cell.posterImage.downloaded(from: movieResult.poster)
         cell.movieType.text = movieResult.type
+
         return cell
     }
 }

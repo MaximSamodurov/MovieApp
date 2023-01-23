@@ -6,16 +6,31 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     
     let cellId = "cellId"
     
+//    let movieSearchController = MovieSearchController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.register(FullInfoMovieCell.self, forCellWithReuseIdentifier: cellId)
-        fetchData()
+        fetchFullInfo()
     }
     
-    func fetchData() {
-        
-        let url = "https://www.omdbapi.com/?i=tt1285016&apikey=1918ecd5"
+    private let selectedItem: String
+    
+     init(selectedItem: String) {
+        self.selectedItem = selectedItem
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var fullIInfoMovieResult: FullIInfoMovieResult?
+    
+    func fetchFullInfo() {
+    
+        let url = "https://www.omdbapi.com/?i=\(selectedItem)&apikey=1918ecd5"
         
         guard let urlString = URL(string: url) else { return }
         
@@ -25,7 +40,20 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
                 print("error fetch", error)
             }
             
-            print(String(data: data!, encoding: .utf8))
+            guard let data = data else { return }
+            
+            do {
+                let searchResult = try JSONDecoder().decode(FullIInfoMovieResult.self, from: data)
+                
+                self.fullIInfoMovieResult = searchResult
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                
+            } catch {
+                print("Failed to decode", error)
+            }
             
         }.resume()
     }
@@ -36,7 +64,14 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FullInfoMovieCell
-        cell.fullPosterImage.downloaded(from: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg")
+        cell.titleMovieData.text = fullIInfoMovieResult?.Title
+        cell.descriptionMovieData.text = fullIInfoMovieResult?.Plot
+        cell.directorMovieData.text = fullIInfoMovieResult?.Director
+        cell.genreMovieData.text = fullIInfoMovieResult?.Genre
+        cell.actorsMovieTitle.text = fullIInfoMovieResult?.Actors
+        cell.awardsMovieData.text = fullIInfoMovieResult?.Awards
+        cell.yearData.text = fullIInfoMovieResult?.Year
+        cell.fullPosterImage.downloaded(from: fullIInfoMovieResult?.Poster ?? "")
         return cell
     }
     
