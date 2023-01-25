@@ -27,8 +27,8 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         super.viewDidLoad()
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(SearchLoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
+//        fetchMovie()
         setupSearchBar()
-        fetchMovie()
         collectionView.addSubview(findAnyFilm)
         findAnyFilm.fillSuperview(padding: .init(top: 100, left: 70, bottom: 0, right: 70))
         findAnyFilm.textAlignment = .center
@@ -53,8 +53,11 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     
     var timer: Timer?
     var paginationDigit = "1"
+    var searchTextChanged = ""
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchTextChanged = searchText
         
         timer?.invalidate()
         // to delay for searching after start typing
@@ -78,14 +81,14 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     var movieResult = [Search]()
     
     fileprivate func fetchMovie() {
-        Service.shared.fetchData(searchTerm: "", pagination: "1") { results, error in
+        Service.shared.fetchData(searchTerm: "inception", pagination: "1") { results, error in
             
             if let error = error {
-                print("Failed to fetch Data", error)
+                print("Failed to fetch data", error)
                 return
             }
             
-            self.movieResult = results 
+            self.movieResult = results
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -100,7 +103,8 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: view.frame.width, height: 230)
     }
-        
+    
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
         let result = movieResult[indexPath.item]
@@ -108,25 +112,27 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         cell.yearLabel.text = result.year
         cell.posterImage.downloaded(from: result.poster)
         cell.movieType.text = result.type
-//
-//        if indexPath.item == movieResult.count - 1 {
-//            let total = 1
-//            let countPagination = total + total
-//            let nextPaginationDigit = String(countPagination)
-//            print(nextPaginationDigit)
-//            Service.shared.fetchData(searchTerm: "inception", pagination: nextPaginationDigit) { results, error in
-//
-//                if let error = error {
-//                    print("Failed to fetch Data", error)
-//                    return
-//                }
-//
-//                self.movieResult += results
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                }
-//            }
-//        }
+                
+        if indexPath.item == movieResult.count - 1 {
+                        
+            let nextPaginationDigit = String((movieResult.count / 10) + 1)
+            
+            // передать в searchTerm текущий фильм
+            Service.shared.fetchData(searchTerm: searchTextChanged, pagination: nextPaginationDigit) { results, error in
+
+                if let error = error {
+                    print("Failed to fetch Data", error)
+                    return
+                }
+                
+                sleep(2)
+                
+                self.movieResult += results
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
         return cell
     }
 }

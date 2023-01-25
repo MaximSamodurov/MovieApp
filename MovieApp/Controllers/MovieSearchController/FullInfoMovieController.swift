@@ -69,7 +69,7 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
         cell.descriptionMovieData.text = fullIInfoMovieResult?.plot
         cell.directorMovieData.text = fullIInfoMovieResult?.director
         cell.genreMovieData.text = fullIInfoMovieResult?.genre
-        cell.actorsMovieTitle.text = fullIInfoMovieResult?.actors
+        cell.actorsMoviewData.text = fullIInfoMovieResult?.actors
         cell.awardsMovieData.text = fullIInfoMovieResult?.awards
         cell.yearData.text = fullIInfoMovieResult?.year
         cell.fullPosterImage.downloaded(from: fullIInfoMovieResult?.poster ?? "")
