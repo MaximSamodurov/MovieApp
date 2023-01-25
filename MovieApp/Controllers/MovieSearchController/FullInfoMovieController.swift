@@ -5,18 +5,16 @@ import UIKit
 class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
-    
-//    let movieSearchController = MovieSearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.register(FullInfoMovieCell.self, forCellWithReuseIdentifier: cellId)
         fetchFullInfo()
     }
+ 
     
-    private let selectedItem: String
-    
+    // init for captured data (imbdID Code) from Movie Search Controller
      init(selectedItem: String) {
         self.selectedItem = selectedItem
         super.init()
@@ -27,6 +25,9 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     }
     
     var fullIInfoMovieResult: FullIInfoMovieResult?
+    
+    // capture data from init
+    private let selectedItem: String
     
     func fetchFullInfo() {
     
@@ -64,14 +65,14 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FullInfoMovieCell
-        cell.titleMovieData.text = fullIInfoMovieResult?.Title
-        cell.descriptionMovieData.text = fullIInfoMovieResult?.Plot
-        cell.directorMovieData.text = fullIInfoMovieResult?.Director
-        cell.genreMovieData.text = fullIInfoMovieResult?.Genre
-        cell.actorsMovieTitle.text = fullIInfoMovieResult?.Actors
-        cell.awardsMovieData.text = fullIInfoMovieResult?.Awards
-        cell.yearData.text = fullIInfoMovieResult?.Year
-        cell.fullPosterImage.downloaded(from: fullIInfoMovieResult?.Poster ?? "")
+        cell.titleMovieData.text = fullIInfoMovieResult?.title
+        cell.descriptionMovieData.text = fullIInfoMovieResult?.plot
+        cell.directorMovieData.text = fullIInfoMovieResult?.director
+        cell.genreMovieData.text = fullIInfoMovieResult?.genre
+        cell.actorsMovieTitle.text = fullIInfoMovieResult?.actors
+        cell.awardsMovieData.text = fullIInfoMovieResult?.awards
+        cell.yearData.text = fullIInfoMovieResult?.year
+        cell.fullPosterImage.downloaded(from: fullIInfoMovieResult?.poster ?? "")
         return cell
     }
     

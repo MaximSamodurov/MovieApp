@@ -5,10 +5,18 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate let cellId = "cellId"
+    fileprivate let footerId = "footerId"
     
-//    var didSelectHandler: ((Search) -> ())?
+    fileprivate let findAnyFilm: UILabel = {
+        let label = UILabel()
+        label.text = "Enter name of the movie..."
+//        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // pass the imdbID Code to FullInfoMovieController
         let items = movieResult[indexPath.item]
         let fullInfoMovieController = FullInfoMovieController(selectedItem: items.imdbID)
           navigationController?.pushViewController(fullInfoMovieController, animated: true)
@@ -18,8 +26,21 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(SearchLoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
         setupSearchBar()
         fetchMovie()
+        collectionView.addSubview(findAnyFilm)
+        findAnyFilm.fillSuperview(padding: .init(top: 100, left: 70, bottom: 0, right: 70))
+        findAnyFilm.textAlignment = .center
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        .init(width: view.frame.width, height: 100	)
     }
     
     fileprivate func setupSearchBar() {
@@ -31,6 +52,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     }
     
     var timer: Timer?
+    var paginationDigit = "1"
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -38,10 +60,10 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         // to delay for searching after start typing
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             
-            Service.shared.fetchData(searchTerm: searchText) { (results, error)  in
+            Service.shared.fetchData(searchTerm: searchText, pagination: self.paginationDigit) { (results, error) in
                 
                 if let error = error {
-                    print("Failed to fetch apps", error)
+                    print("Failed to fetch movies", error)
                     return
                 }
                 
@@ -56,14 +78,14 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     var movieResult = [Search]()
     
     fileprivate func fetchMovie() {
-        Service.shared.fetchData(searchTerm: "") { results, error in
+        Service.shared.fetchData(searchTerm: "", pagination: "1") { results, error in
             
             if let error = error {
                 print("Failed to fetch Data", error)
                 return
             }
             
-            self.movieResult = results
+            self.movieResult = results 
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -71,21 +93,40 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movieResult.count
+        findAnyFilm.isHidden = movieResult.count != 0
+        return movieResult.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: view.frame.width, height: 230)
     }
-    
+        
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
-        let movieResult = movieResult[indexPath.item]
-        cell.nameLabel.text = movieResult.title
-        cell.yearLabel.text = movieResult.year
-        cell.posterImage.downloaded(from: movieResult.poster)
-        cell.movieType.text = movieResult.type
-
+        let result = movieResult[indexPath.item]
+        cell.nameLabel.text = result.title
+        cell.yearLabel.text = result.year
+        cell.posterImage.downloaded(from: result.poster)
+        cell.movieType.text = result.type
+//
+//        if indexPath.item == movieResult.count - 1 {
+//            let total = 1
+//            let countPagination = total + total
+//            let nextPaginationDigit = String(countPagination)
+//            print(nextPaginationDigit)
+//            Service.shared.fetchData(searchTerm: "inception", pagination: nextPaginationDigit) { results, error in
+//
+//                if let error = error {
+//                    print("Failed to fetch Data", error)
+//                    return
+//                }
+//
+//                self.movieResult += results
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+//            }
+//        }
         return cell
     }
 }

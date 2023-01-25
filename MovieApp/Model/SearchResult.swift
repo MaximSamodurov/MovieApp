@@ -1,8 +1,10 @@
 import Foundation
 
 struct SearchResult: Decodable {
-    let totalResults: String
-    let Search: [Search]
+    let search: [Search]
+    private enum CodingKeys: String, CodingKey {
+        case search = "Search"
+    }
 }
 
 struct Search: Decodable {
@@ -18,6 +20,6 @@ struct Search: Decodable {
         case year = "Year"
         case poster = "Poster"
         case type = "Type"
-        case imdbID
+        case imdbID 
     }
 }

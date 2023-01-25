@@ -1,14 +1,12 @@
-
-
 import Foundation
 
 class Service {
     
     static let shared = Service()
     
-    func fetchData(searchTerm: String, completion: @escaping ([Search], Error?) -> ()) {
+    func fetchData(searchTerm: String, pagination: String, completion: @escaping ([Search], Error?) -> ()) {
         
-        let url = "https://www.omdbapi.com/?i=tt3896198&apikey=1918ecd5&s=\(searchTerm)"
+        let url = "https://www.omdbapi.com/?i=tt3896198&apikey=1918ecd5&s=\(searchTerm)&page=\(pagination)"
         
         guard let urlString = URL(string:  url) else { return }
         
@@ -25,7 +23,7 @@ class Service {
             do {
                 let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
                 
-                completion(searchResult.Search, nil)
+                completion(searchResult.search, nil)
                 
             } catch {
                 print("Failed to decode", error)
@@ -34,4 +32,3 @@ class Service {
         } .resume()
     }
 }
-
