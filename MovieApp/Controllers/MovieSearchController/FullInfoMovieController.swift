@@ -72,7 +72,12 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
         cell.actorsMoviewData.text = fullIInfoMovieResult?.actors
         cell.awardsMovieData.text = fullIInfoMovieResult?.awards
         cell.yearData.text = fullIInfoMovieResult?.year
-        cell.fullPosterImage.downloaded(from: fullIInfoMovieResult?.poster ?? "")
+        
+        if fullIInfoMovieResult?.poster != "N/A" {
+            cell.fullPosterImage.downloaded(from: fullIInfoMovieResult?.poster ?? "")
+        } else {
+            cell.fullPosterImage.image = UIImage(named: "no-image")
+        }
         return cell
     }
     

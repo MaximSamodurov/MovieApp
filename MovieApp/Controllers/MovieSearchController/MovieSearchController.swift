@@ -116,7 +116,11 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         let result = movieResult[indexPath.item]
         cell.nameLabel.text = result.title
         cell.yearLabel.text = result.year
-        cell.posterImage.downloaded(from: result.poster)
+        if result.poster != "N/A" {
+            cell.posterImage.downloaded(from: result.poster)
+        } else {
+            cell.posterImage.image = UIImage(named: "no-image")
+        }
         cell.movieType.text = result.type
         
         if indexPath.item == movieResult.count - 1 {
