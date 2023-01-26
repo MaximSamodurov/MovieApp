@@ -70,14 +70,7 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
         let overalStackView = VerticalStackView(arrangedSubViews: [fullPosterImage, textStackView], spacing: 5)
         addSubview(overalStackView)
 
-//        NSLayoutConstraint.activate([
-//            fullPosterImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            fullPosterImage.topAnchor.constraint(equalTo: self.topAnchor),
-//            fullPosterImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-////            fullPosterImage.heightAnchor.constraint(equalToConstant: 1000),
-//        ])
-        
-        
+                
         overalStackView.fillSuperview(padding: .init(top: 0, left: 12, bottom: -100, right: 12))
                
     }

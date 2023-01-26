@@ -6,6 +6,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     fileprivate let cellId = "cellId"
     fileprivate let footerId = "footerId"
+    let searchLoadingFooter = SearchLoadingFooter()
     
     fileprivate let findAnyFilm: UILabel = {
         let label = UILabel()
@@ -27,7 +28,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         super.viewDidLoad()
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(SearchLoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
-//        fetchMovie()
         setupSearchBar()
         collectionView.addSubview(findAnyFilm)
         findAnyFilm.fillSuperview(padding: .init(top: 100, left: 70, bottom: 0, right: 70))
@@ -35,8 +35,15 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
-        return footer
+        
+        if kind == UICollectionView.elementKindSectionFooter {
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
+                footer.addSubview(searchLoadingFooter)
+                searchLoadingFooter.activityIndicator.centerInSuperview()
+                searchLoadingFooter.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+                return footer
+            }
+            return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -59,6 +66,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         
         searchTextChanged = searchText
         
+     
         timer?.invalidate()
         // to delay for searching after start typing
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
@@ -69,7 +77,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
                     print("Failed to fetch movies", error)
                     return
                 }
-                
                 self.movieResult = results
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -81,7 +88,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     var movieResult = [Search]()
     
     fileprivate func fetchMovie() {
-        Service.shared.fetchData(searchTerm: "inception", pagination: "1") { results, error in
+        Service.shared.fetchData(searchTerm: "", pagination: "1") { results, error in
             
             if let error = error {
                 print("Failed to fetch data", error)
@@ -104,7 +111,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         .init(width: view.frame.width, height: 230)
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
         let result = movieResult[indexPath.item]
@@ -112,11 +118,12 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         cell.yearLabel.text = result.year
         cell.posterImage.downloaded(from: result.poster)
         cell.movieType.text = result.type
-                
+        
         if indexPath.item == movieResult.count - 1 {
-                        
-            let nextPaginationDigit = String((movieResult.count / 10) + 1)
             
+            searchLoadingFooter.activityIndicator.startAnimating()
+            
+            let nextPaginationDigit = String((movieResult.count / 10) + 1)
             // передать в searchTerm текущий фильм
             Service.shared.fetchData(searchTerm: searchTextChanged, pagination: nextPaginationDigit) { results, error in
 

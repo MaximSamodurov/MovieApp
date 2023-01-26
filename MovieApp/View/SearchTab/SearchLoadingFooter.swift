@@ -3,15 +3,12 @@ import UIKit
 
 class SearchLoadingFooter: UICollectionReusableView {
     
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         activityIndicator.color = .darkGray
-        activityIndicator.startAnimating()
-                
         addSubview(activityIndicator)
-        activityIndicator.centerInSuperview()
     }
     
     required init?(coder: NSCoder) {
