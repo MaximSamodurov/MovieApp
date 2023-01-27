@@ -11,7 +11,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     fileprivate let findAnyFilm: UILabel = {
         let label = UILabel()
         label.text = "Enter name of the movie..."
-//        label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
@@ -22,7 +21,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         let fullInfoMovieController = FullInfoMovieController(selectedItem: items.imdbID)
           navigationController?.pushViewController(fullInfoMovieController, animated: true)
       }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +63,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchTextChanged = searchText
-        
-     
+
         timer?.invalidate()
         // to delay for searching after start typing
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
@@ -87,20 +84,20 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     
     var movieResult = [Search]()
     
-    fileprivate func fetchMovie() {
-        Service.shared.fetchData(searchTerm: "", pagination: "1") { results, error in
-            
-            if let error = error {
-                print("Failed to fetch data", error)
-                return
-            }
-            
-            self.movieResult = results
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
+//    fileprivate func fetchMovie() {
+//        Service.shared.fetchData(searchTerm: "", pagination: "1") { results, error in
+//
+//            if let error = error {
+//                print("Failed to fetch data", error)
+//                return
+//            }
+//
+//            self.movieResult = results
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
+//    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         findAnyFilm.isHidden = movieResult.count != 0
@@ -123,12 +120,13 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         }
         cell.movieType.text = result.type
         
+        self.searchLoadingFooter.activityIndicator.startAnimating()
+        
+        // implemented pagination
         if indexPath.item == movieResult.count - 1 {
             
-            searchLoadingFooter.activityIndicator.startAnimating()
-            
             let nextPaginationDigit = String((movieResult.count / 10) + 1)
-            // передать в searchTerm текущий фильм
+            
             Service.shared.fetchData(searchTerm: searchTextChanged, pagination: nextPaginationDigit) { results, error in
 
                 if let error = error {

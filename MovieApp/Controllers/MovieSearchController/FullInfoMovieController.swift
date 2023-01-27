@@ -2,13 +2,17 @@
 
 import UIKit
 
-class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowLayout {
+class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowLayout, ActivityIndicator {
     
     let cellId = "cellId"
-
+    let activityIndicator = UIActivityIndicatorView()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showActivityIndicator()
         collectionView.register(FullInfoMovieCell.self, forCellWithReuseIdentifier: cellId)
         fetchFullInfo()
     }
@@ -29,14 +33,15 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     // capture data from init
     private let selectedItem: String
     
-    func fetchFullInfo() {
+   
     
+    func fetchFullInfo() {
         let url = "https://www.omdbapi.com/?i=\(selectedItem)&apikey=1918ecd5"
         
         guard let urlString = URL(string: url) else { return }
-        
+    
         URLSession.shared.dataTask(with: urlString) { data, response, error in
-            
+        
             if let error = error {
                 print("error fetch", error)
             }
@@ -55,12 +60,16 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
             } catch {
                 print("Failed to decode", error)
             }
+            self.hideActivityIndicator()
             
         }.resume()
+        
     }
     
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

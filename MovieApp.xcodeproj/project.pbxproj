@@ -24,6 +24,7 @@
 		B287C4B329755814007A727F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B287C4B229755814007A727F /* Service.swift */; };
 		B2B51FBA297A90BC0037B82F /* FullInfoMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B51FB9297A90BC0037B82F /* FullInfoMovieCell.swift */; };
 		B2B51FBC297A952B0037B82F /* FullInfoMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B51FBB297A952B0037B82F /* FullInfoMovieController.swift */; };
+		B2BD027F29840E0900482C44 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD027E29840E0900482C44 /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B287C4B229755814007A727F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		B2B51FB9297A90BC0037B82F /* FullInfoMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoMovieCell.swift; sourceTree = "<group>"; };
 		B2B51FBB297A952B0037B82F /* FullInfoMovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoMovieController.swift; sourceTree = "<group>"; };
+		B2BD027E29840E0900482C44 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				B21C9AA329718FA500B806A0 /* SearchResultCell.swift */,
 				B2B51FB9297A90BC0037B82F /* FullInfoMovieCell.swift */,
 				B25F45A2297FFF5700223E10 /* SearchLoadingFooter.swift */,
+				B2BD027E29840E0900482C44 /* ActivityIndicator.swift */,
 			);
 			path = SearchTab;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B21C9A9E297168B800B806A0 /* BaseListController.swift in Sources */,
+				B2BD027F29840E0900482C44 /* ActivityIndicator.swift in Sources */,
 				B21C9AFB2972BC9A00B806A0 /* Extensions.swift in Sources */,
 				B244E0902970438000690A48 /* MovieSearchController.swift in Sources */,
 				B244E06C2970393700690A48 /* BaseTabController.swift in Sources */,
