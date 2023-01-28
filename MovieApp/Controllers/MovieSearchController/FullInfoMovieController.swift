@@ -7,17 +7,13 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     let cellId = "cellId"
     let activityIndicator = UIActivityIndicatorView()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         showActivityIndicator()
         collectionView.register(FullInfoMovieCell.self, forCellWithReuseIdentifier: cellId)
         fetchFullInfo()
     }
  
-    
     // init for captured data (imbdID Code) from Movie Search Controller
      init(selectedItem: String) {
         self.selectedItem = selectedItem
@@ -32,8 +28,6 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     
     // capture data from init
     private let selectedItem: String
-    
-   
     
     func fetchFullInfo() {
         let url = "https://www.omdbapi.com/?i=\(selectedItem)&apikey=1918ecd5"
@@ -63,10 +57,7 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
             self.hideActivityIndicator()
             
         }.resume()
-        
     }
-    
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1

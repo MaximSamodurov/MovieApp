@@ -41,7 +41,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
                 searchLoadingFooter.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
                 return footer
             }
-            return UICollectionReusableView()
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -84,21 +84,6 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     
     var movieResult = [Search]()
     
-//    fileprivate func fetchMovie() {
-//        Service.shared.fetchData(searchTerm: "", pagination: "1") { results, error in
-//
-//            if let error = error {
-//                print("Failed to fetch data", error)
-//                return
-//            }
-//
-//            self.movieResult = results
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
-//        }
-//    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         findAnyFilm.isHidden = movieResult.count != 0
         return movieResult.count
@@ -116,7 +101,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         if result.poster != "N/A" {
             cell.posterImage.downloaded(from: result.poster)
         } else {
-            cell.posterImage.image = UIImage(named: "no-image")
+            cell.posterImage.image = cell.noImage.image
         }
         cell.movieType.text = result.type
         

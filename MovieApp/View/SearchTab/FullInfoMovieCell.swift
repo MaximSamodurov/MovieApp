@@ -23,7 +23,7 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
     let yearTitle = UILabel(text: "Release Date", font: .boldSystemFont(ofSize: 16))
     
 
-    let titleMovieData = UILabel(text: "Inception", font: .boldSystemFont(ofSize: 25), numberOfLines: 0)
+    let titleMovieData = UILabel(text: "", font: .boldSystemFont(ofSize: 25), numberOfLines: 0)
     let descriptionMovieData = UILabel(text: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.", font: .systemFont(ofSize: 15), numberOfLines: 0)
     let directorMovieData = UILabel(text: "Christopher Nolan", font: .systemFont(ofSize: 15), numberOfLines: 0)
     let genreMovieData = UILabel(text: "Action, Adventure, Sci-Fi", font: .systemFont(ofSize: 15), numberOfLines: 0)
@@ -31,13 +31,10 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
     let awardsMovieData = UILabel(text: "Won 4 Oscars. 158 wins & 220 nominations total", font: .systemFont(ofSize: 15), numberOfLines: 0)
     let yearData = UILabel(text: "16 Jul 2010", font: .systemFont(ofSize: 15), numberOfLines: 0)
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         let title = VerticalStackView(arrangedSubViews: [
-//            titleMovieTitle,
             titleMovieData
         ], spacing: 1)
         let description = VerticalStackView(arrangedSubViews: [
@@ -65,7 +62,6 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
         yearData
         ], spacing: 1)
         
-//        translatesAutoresizingMaskIntoConstraints = false
         let textStackView = VerticalStackView(arrangedSubViews: [title, description, director, genre, actors, awards, year ], spacing: 8)
         let overalStackView = VerticalStackView(arrangedSubViews: [fullPosterImage, textStackView], spacing: 5)
         addSubview(overalStackView)

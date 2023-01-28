@@ -4,13 +4,10 @@ import UIKit
 
 public protocol ActivityIndicator {
     
-    /// The activity indicator
     var activityIndicator: UIActivityIndicatorView { get }
     
-    /// Show the activity indicator in the view
     func showActivityIndicator()
     
-    /// Hide the activity indicator in the view
     func hideActivityIndicator()
 }
 

@@ -4,13 +4,24 @@ import UIKit
 class SearchResultCell: UICollectionViewCell {
     
     let posterImage: UIImageView = {
-        let pv = UIImageView()
-        pv.downloaded(from: "")
-        pv.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        pv.heightAnchor.constraint(equalToConstant: 230).isActive = true
-        pv.layer.cornerRadius = 10
-        pv.clipsToBounds = true
-        return pv
+        let pi = UIImageView()
+        pi.downloaded(from: "")
+        pi.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        pi.heightAnchor.constraint(equalToConstant: 230).isActive = true
+        pi.layer.cornerRadius = 10
+        pi.clipsToBounds = true
+        return pi
+    }()
+    
+    let noImage: UIImageView = {
+        let ni = UIImageView()
+        ni.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        ni.heightAnchor.constraint(equalToConstant: 230).isActive = true
+        ni.layer.cornerRadius = 10
+        ni.image = UIImage(named: "no-image")
+        ni.contentMode = .scaleAspectFit
+        ni.clipsToBounds = true
+        return ni
     }()
     
     let nameLabel = UILabel(text: "Movie Name", font: .boldSystemFont(ofSize: 24))
