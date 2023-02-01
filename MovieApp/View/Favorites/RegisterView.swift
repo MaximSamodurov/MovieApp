@@ -1,8 +1,7 @@
 
-
 import UIKit
 
-class LoginView: UIView {
+class RegisterView: UIView {
     
     let enterEmailTextField = {
         let textfield = UITextField()
@@ -20,6 +19,14 @@ class LoginView: UIView {
         return pass
     }()
     
+    let repeatPasswordTextField = {
+        let pass = UITextField()
+        pass.borderStyle = .roundedRect
+        pass.text = "Enter your password"
+        pass.textColor = .gray
+        return pass
+    }()
+    
     let loginButton = {
         let button = UIButton()
         button.tintColor = .blue
@@ -29,14 +36,6 @@ class LoginView: UIView {
         return button
     }()
     
-    let orLabelRegisterButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        button.setTitle("Or click to register", for: .normal)
-        button.setTitleColor(.black, for: .normal   )
-        return button
-    }()
-
-    
     override init(frame: CGRect) {
       super.init(frame: frame)
           
@@ -44,17 +43,17 @@ class LoginView: UIView {
         
         addSubview(enterEmailTextField)
         addSubview(passwordTextField)
+        addSubview(repeatPasswordTextField)
         addSubview(loginButton)
-        addSubview(orLabelRegisterButton)
         
         enterEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        repeatPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        orLabelRegisterButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             enterEmailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            enterEmailTextField.topAnchor.constraint(equalTo: topAnchor, constant: 300),
+            enterEmailTextField.topAnchor.constraint(equalTo: topAnchor, constant: 200),
             enterEmailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             enterEmailTextField.heightAnchor.constraint(equalToConstant: 44),
             
@@ -63,15 +62,15 @@ class LoginView: UIView {
             passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44),
             
+            repeatPasswordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            repeatPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            repeatPasswordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            repeatPasswordTextField.heightAnchor.constraint(equalToConstant: 44),
+            
             loginButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            loginButton.topAnchor.constraint(equalTo: repeatPasswordTextField.bottomAnchor, constant: 20),
             loginButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -44),
             loginButton.heightAnchor.constraint(equalToConstant: 44),
-            
-            orLabelRegisterButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            orLabelRegisterButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 0),
-            orLabelRegisterButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            orLabelRegisterButton.heightAnchor.constraint(equalToConstant: 44)
 
         ])
                     

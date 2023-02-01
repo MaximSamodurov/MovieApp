@@ -6,14 +6,22 @@ class FavoritesLoginController: UIViewController {
     
     let loginView = LoginView(frame: CGRect.zero)
     
-    
+    let favoritesRegisterController = FavoritesRegisterController()
+
+    @objc func pushToFavoritesLoginController() {
+        self.present(favoritesRegisterController, animated: true)
+//        navigationController?.pushViewController(favoritesRegisterController, animated: true)
+        print("pushToFavoritesLoginControllerPressed")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.enterEmailTextField.delegate = self
         loginView.passwordTextField.delegate = self
         view.addSubview(loginView)
         loginView.fillSuperview()
-        loginView.enterEmailTextField.resignFirstResponder()
+        loginView.orLabelRegisterButton.addTarget(self, action: #selector(pushToFavoritesLoginController), for: .touchUpInside)
+        
     }
 }
 

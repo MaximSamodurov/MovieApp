@@ -19,7 +19,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         // pass the imdbID Code to FullInfoMovieController
         let items = movieResult[indexPath.item]
         let fullInfoMovieController = FullInfoMovieController(selectedItem: items.imdbID)
-          navigationController?.pushViewController(fullInfoMovieController, animated: true)
+        navigationController?.pushViewController(fullInfoMovieController, animated: true)
       }
     
     override func viewDidLoad() {
