@@ -14,7 +14,6 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
         return pv
     }()
     
-//    let titleMovieTitle = UILabel(text: "Name", font: .boldSystemFont(ofSize: 18))
     let descriptionMovieTitle = UILabel(text: "Description", font: .boldSystemFont(ofSize: 16))
     let directorMovieTitle = UILabel(text: "Director ", font: .boldSystemFont(ofSize: 16))
     let genreMovieTitle = UILabel(text: "Genre", font: .boldSystemFont(ofSize: 16))
@@ -62,11 +61,10 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
         yearData
         ], spacing: 1)
         
-        let textStackView = VerticalStackView(arrangedSubViews: [title, description, director, genre, actors, awards, year ], spacing: 8)
+        let textStackView = VerticalStackView(arrangedSubViews: [title, description, director, genre, actors, awards, year], spacing: 8)
         let overalStackView = VerticalStackView(arrangedSubViews: [fullPosterImage, textStackView], spacing: 5)
         addSubview(overalStackView)
 
-                
         overalStackView.fillSuperview(padding: .init(top: 0, left: 12, bottom: -100, right: 12))
                
     }

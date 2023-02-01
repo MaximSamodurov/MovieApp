@@ -10,6 +10,7 @@ class BaseTabController: UITabBarController {
             createNavController(viewController: MovieSearchController(), title: "Search", imageName: "search"),
             createNavController(viewController: FavoritesLoginController(), title: "Favorites", imageName: "heart"),
         ]
+        tabBar.backgroundColor = UIColor(white: 0.9, alpha: 1)
     }
     
     fileprivate func createNavController(viewController: UIViewController, title: String, imageName: String) -> UIViewController
@@ -19,7 +20,6 @@ class BaseTabController: UITabBarController {
         viewController.navigationItem.title = title
         navController.navigationBar.prefersLargeTitles = true
         navController.tabBarItem.title = title
-//        viewController.view.backgroundColor = .white
         navController.tabBarItem.image = UIImage(named: imageName)
         return navController
     }

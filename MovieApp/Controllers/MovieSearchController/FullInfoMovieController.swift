@@ -30,33 +30,19 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     private let selectedItem: String
     
     func fetchFullInfo() {
-        let url = "https://www.omdbapi.com/?i=\(selectedItem)&apikey=1918ecd5"
-        
-        guard let urlString = URL(string: url) else { return }
-    
-        URLSession.shared.dataTask(with: urlString) { data, response, error in
-        
+        Service.shared.fetchFullInfo(selectedItem: selectedItem) { result, error in
+            
             if let error = error {
-                print("error fetch", error)
+                print("Error with fullInfo", error)
             }
             
-            guard let data = data else { return }
+            self.fullIInfoMovieResult = result
             
-            do {
-                let searchResult = try JSONDecoder().decode(FullIInfoMovieResult.self, from: data)
-                
-                self.fullIInfoMovieResult = searchResult
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-                
-            } catch {
-                print("Failed to decode", error)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
             self.hideActivityIndicator()
-            
-        }.resume()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
