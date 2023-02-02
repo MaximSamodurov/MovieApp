@@ -22,12 +22,12 @@ class RegisterView: UIView {
     let repeatPasswordTextField = {
         let pass = UITextField()
         pass.borderStyle = .roundedRect
-        pass.text = "Enter your password"
+        pass.text = "Repeat your password"
         pass.textColor = .gray
         return pass
     }()
     
-    let loginButton = {
+    let registerButton = {
         let button = UIButton()
         button.tintColor = .blue
         button.setImage(UIImage(named: "login"), for: .normal)
@@ -44,12 +44,12 @@ class RegisterView: UIView {
         addSubview(enterEmailTextField)
         addSubview(passwordTextField)
         addSubview(repeatPasswordTextField)
-        addSubview(loginButton)
+        addSubview(registerButton)
         
         enterEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         repeatPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             enterEmailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -67,10 +67,10 @@ class RegisterView: UIView {
             repeatPasswordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             repeatPasswordTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            loginButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
-            loginButton.topAnchor.constraint(equalTo: repeatPasswordTextField.bottomAnchor, constant: 20),
-            loginButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -44),
-            loginButton.heightAnchor.constraint(equalToConstant: 44),
+            registerButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44),
+            registerButton.topAnchor.constraint(equalTo: repeatPasswordTextField.bottomAnchor, constant: 20),
+            registerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -44),
+            registerButton.heightAnchor.constraint(equalToConstant: 44),
 
         ])
                     
