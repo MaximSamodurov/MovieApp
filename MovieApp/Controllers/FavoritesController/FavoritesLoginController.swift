@@ -6,17 +6,20 @@ import Firebase
 class FavoritesLoginController: UIViewController {
     
     let loginView = LoginView(frame: CGRect.zero)
-    
+    let favoritesController = FavoritesController()
     let favoritesRegisterController = FavoritesRegisterController()
-
+    
+    // Transition to Register Controller if click "Or click to register" text
     @objc func pushToFavoritesLoginController() {
         self.present(favoritesRegisterController, animated: true)
     }
     
+    // Transition to Favorites Controller if login and password correct and already register in firebase
    @objc func signInHandler() {
         guard let email = loginView.enterEmailTextField.text else { return }
         guard let password = loginView.passwordTextField.text else { return }
         loginUser(withEmail: email, password: password)
+        
     }
 
     override func viewDidLoad() {
@@ -27,21 +30,27 @@ class FavoritesLoginController: UIViewController {
         loginView.fillSuperview()
         loginView.orLabelRegisterButton.addTarget(self, action: #selector(pushToFavoritesLoginController), for: .touchUpInside)
         loginView.loginButton.addTarget(self, action: #selector(signInHandler), for: .touchUpInside)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
     }
     
+    // Firebase Login
     func loginUser(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            
             if let error = error {
                 print("Failed with sign user", error)
+                let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(okAction)
+                self.present(alert, animated: true)
                 return
             }
             
             print("Succefully logged user in...")
-            
+            self.navigationController?.pushViewController(self.favoritesController, animated: true)
         }
     }
 }
+
 
 extension FavoritesLoginController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -50,15 +59,9 @@ extension FavoritesLoginController: UITextFieldDelegate {
         } else if
             textField == loginView.passwordTextField {
             loginView.passwordTextField.text?.removeAll()
+            loginView.passwordTextField.isSecureTextEntry = true
         }
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == loginView.enterEmailTextField {
-//            loginView.enterEmailTextField.text = "Enter your email"
-//        } else if
-//            textField == loginView.passwordTextField {
-//                loginView.passwordTextField.text = "Enter your password"
-//        }
-//    }
 }
+
+

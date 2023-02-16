@@ -7,7 +7,8 @@ class LoginView: UIView {
     let enterEmailTextField = {
         let textfield = UITextField()
         textfield.borderStyle = .roundedRect
-        textfield.text = "Enter your email"
+//        textfield.text = "Enter your email"
+        textfield.text = "test@ya.ru"
         textfield.textColor = .gray
         return textfield
     }()
@@ -15,7 +16,8 @@ class LoginView: UIView {
     let passwordTextField = {
         let pass = UITextField()
         pass.borderStyle = .roundedRect
-        pass.text = "Enter your password"
+//        pass.text = "Enter your password"
+        pass.text = "123456"
         pass.textColor = .gray
         return pass
     }()

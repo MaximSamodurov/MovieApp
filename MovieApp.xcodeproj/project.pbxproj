@@ -13,11 +13,14 @@
 		B21C9AA82971982D00B806A0 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C9AA72971982D00B806A0 /* VerticalStackView.swift */; };
 		B21C9AAA2971991F00B806A0 /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C9AA92971991F00B806A0 /* LayoutHelper.swift */; };
 		B21C9AFB2972BC9A00B806A0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21C9AFA2972BC9A00B806A0 /* Extensions.swift */; };
+		B22F5011299D300A0002679F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22F5010299D300A0002679F /* StorageService.swift */; };
 		B244E0582970385700690A48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244E0572970385700690A48 /* AppDelegate.swift */; };
 		B244E0612970385A00690A48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B244E0602970385A00690A48 /* Assets.xcassets */; };
 		B244E0642970385A00690A48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B244E0622970385A00690A48 /* LaunchScreen.storyboard */; };
 		B244E06C2970393700690A48 /* BaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244E06B2970393700690A48 /* BaseTabController.swift */; };
 		B244E0902970438000690A48 /* MovieSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B244E08F2970438000690A48 /* MovieSearchController.swift */; };
+		B2467CA7298BD21500BA5D61 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2467CA6298BD21500BA5D61 /* FavoritesController.swift */; };
+		B2467CA9298C122D00BA5D61 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2467CA8298C122D00BA5D61 /* FavoritesView.swift */; };
 		B25F45A0297ED8FE00223E10 /* FullIInfoMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F459F297ED8FE00223E10 /* FullIInfoMovieResult.swift */; };
 		B25F45A3297FFF5700223E10 /* SearchLoadingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F45A2297FFF5700223E10 /* SearchLoadingFooter.swift */; };
 		B287C4B329755814007A727F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B287C4B229755814007A727F /* Service.swift */; };
@@ -43,6 +46,7 @@
 		B21C9AA72971982D00B806A0 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		B21C9AA92971991F00B806A0 /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 		B21C9AFA2972BC9A00B806A0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B22F5010299D300A0002679F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		B244E0542970385700690A48 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B244E0572970385700690A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B244E0602970385A00690A48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		B244E0652970385A00690A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B244E06B2970393700690A48 /* BaseTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabController.swift; sourceTree = "<group>"; };
 		B244E08F2970438000690A48 /* MovieSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchController.swift; sourceTree = "<group>"; };
+		B2467CA6298BD21500BA5D61 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		B2467CA8298C122D00BA5D61 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		B25F459F297ED8FE00223E10 /* FullIInfoMovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullIInfoMovieResult.swift; sourceTree = "<group>"; };
 		B25F45A2297FFF5700223E10 /* SearchLoadingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLoadingFooter.swift; sourceTree = "<group>"; };
 		B287C4B229755814007A727F /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				B287C4B229755814007A727F /* Service.swift */,
+				B22F5010299D300A0002679F /* StorageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 			children = (
 				B2BD02812985207800482C44 /* FavoritesLoginController.swift */,
 				B2BD0283298522EE00482C44 /* FavoritesRegisterController.swift */,
+				B2467CA6298BD21500BA5D61 /* FavoritesController.swift */,
 			);
 			path = FavoritesController;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 			children = (
 				B2BD0287298523D200482C44 /* LoginView.swift */,
 				B2A6485D298AAA9E006B1CF5 /* RegisterView.swift */,
+				B2467CA8298C122D00BA5D61 /* FavoritesView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -294,9 +303,12 @@
 				B244E0902970438000690A48 /* MovieSearchController.swift in Sources */,
 				B2BD0284298522EE00482C44 /* FavoritesRegisterController.swift in Sources */,
 				B244E06C2970393700690A48 /* BaseTabController.swift in Sources */,
+				B2467CA7298BD21500BA5D61 /* FavoritesController.swift in Sources */,
 				B21C9AAA2971991F00B806A0 /* LayoutHelper.swift in Sources */,
+				B22F5011299D300A0002679F /* StorageService.swift in Sources */,
 				B2A6485E298AAA9E006B1CF5 /* RegisterView.swift in Sources */,
 				B25F45A3297FFF5700223E10 /* SearchLoadingFooter.swift in Sources */,
+				B2467CA9298C122D00BA5D61 /* FavoritesView.swift in Sources */,
 				B2BD0288298523D200482C44 /* LoginView.swift in Sources */,
 				B21C9AA0297181B900B806A0 /* SearchResult.swift in Sources */,
 				B21C9AA429718FA500B806A0 /* SearchResultCell.swift in Sources */,

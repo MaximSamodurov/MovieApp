@@ -28,6 +28,8 @@ class SearchResultCell: UICollectionViewCell {
     let yearLabel = UILabel(text: "Year", font: .boldSystemFont(ofSize: 20))
     let movieType = UILabel(text: "Rating", font: .systemFont(ofSize: 20))
     
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -36,7 +38,8 @@ class SearchResultCell: UICollectionViewCell {
         nameLabel,
         yearLabel,
         movieType,
-        ], spacing: 4)
+//        likeImage
+        ], spacing: 7)
         
         let infoAlignmentStackView = UIStackView(arrangedSubviews: [infoStackView])
         infoStackView.alignment = .center
@@ -46,7 +49,6 @@ class SearchResultCell: UICollectionViewCell {
         overalStackView.spacing = 12
         addSubview(overalStackView)
         overalStackView.fillSuperview(padding: .init(top: 0, left: 12, bottom: 0, right: 12))
-        
     }
     
     required init?(coder: NSCoder) {

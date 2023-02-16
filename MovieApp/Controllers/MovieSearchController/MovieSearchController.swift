@@ -7,6 +7,7 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
     fileprivate let cellId = "cellId"
     fileprivate let footerId = "footerId"
     let searchLoadingFooter = SearchLoadingFooter()
+    fileprivate let favoritesLoginController = FavoritesLoginController()
     
     fileprivate let findAnyFilm: UILabel = {
         let label = UILabel()
@@ -30,8 +31,14 @@ class MovieSearchController: BaseListController, UICollectionViewDelegateFlowLay
         collectionView.addSubview(findAnyFilm)
         findAnyFilm.fillSuperview(padding: .init(top: 100, left: 70, bottom: 0, right: 70))
         findAnyFilm.textAlignment = .center
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Login to add likes", style: .plain, target: self, action: #selector(addTapped))
     }
     
+    @objc func addTapped() {
+        navigationController?.pushViewController(favoritesLoginController, animated: true)
+    }
+    
+    // Add loading spinner
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionFooter {

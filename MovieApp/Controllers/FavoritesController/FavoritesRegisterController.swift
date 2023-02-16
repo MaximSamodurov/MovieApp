@@ -6,6 +6,7 @@ import Firebase
 class FavoritesRegisterController: UIViewController {
     
     let registerView = RegisterView(frame: CGRect.zero)
+    let favoritesController = FavoritesController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,17 +16,28 @@ class FavoritesRegisterController: UIViewController {
         view.addSubview(registerView)
         registerView.fillSuperview()
         registerView.registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
     }
     
+    
+    // create user by Register button p.s. change button from LOGIN to register
     @objc func handleRegister() {
         guard let email = registerView.enterEmailTextField.text else { return }
         guard let password = registerView.passwordTextField.text else { return }
-        createUser(withEmail: email, password: password)
+        // check if password field and passwordRepeat field are the same
+        if password == registerView.repeatPasswordTextField.text {
+            createUser(withEmail: email, password: password)
+            // if not show alert
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Passwords are not the same", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
     }
     
     
-    // MARK: - API
-    
+    // Firebase Create User
     func createUser(withEmail email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             
@@ -43,14 +55,18 @@ class FavoritesRegisterController: UIViewController {
                     print("Failed to updateDatabase values", error)
                     return
                 }
-                
                 print("Succesfully Signed Up User")
-                
+                #warning("НЕ РАБОТЕТ ПЕРЕХОД НА FavoritesController")
             })
             
         }
     }
 }
+
+
+
+
+// MARK: - Extensions
 
 extension FavoritesRegisterController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -59,21 +75,11 @@ extension FavoritesRegisterController: UITextFieldDelegate {
         } else if
             textField == registerView.passwordTextField {
             registerView.passwordTextField.text?.removeAll()
+            registerView.passwordTextField.isSecureTextEntry = true
         } else if
             textField == registerView.repeatPasswordTextField {
             registerView.repeatPasswordTextField.text?.removeAll()
+            registerView.repeatPasswordTextField.isSecureTextEntry = true
         }
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == registerView.enterEmailTextField {
-//            registerView.enterEmailTextField.text = "Enter your email"
-//        } else if
-//            textField == registerView.passwordTextField {
-//            registerView.passwordTextField.text = "Enter your password"
-//        } else if
-//            textField == registerView.repeatPasswordTextField {
-//            registerView.repeatPasswordTextField.text = "Repeat your password"
-//        }
-//    }
 }

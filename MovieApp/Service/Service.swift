@@ -47,14 +47,12 @@ class Service {
             do {
                 let searchResult = try JSONDecoder().decode(FullIInfoMovieResult.self, from: data)
                 completion(searchResult, nil)
-//                self.fullIInfoMovieResult = searchResult
                 
             } catch {
                 print("Failed to decode", error)
             }
         }.resume()
     }
-    
 }
 
 

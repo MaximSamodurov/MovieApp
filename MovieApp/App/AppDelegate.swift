@@ -2,6 +2,7 @@ import UIKit
 import FirebaseCore
 
 @main
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -11,9 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = BaseTabController()
         self.window?.makeKeyAndVisible()
         FirebaseApp.configure()
-         
         return true
     }
-
 }
 
