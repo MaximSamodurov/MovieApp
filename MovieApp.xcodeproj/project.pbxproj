@@ -37,6 +37,7 @@
 		B2BD02822985207800482C44 /* FavoritesLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD02812985207800482C44 /* FavoritesLoginController.swift */; };
 		B2BD0284298522EE00482C44 /* FavoritesRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD0283298522EE00482C44 /* FavoritesRegisterController.swift */; };
 		B2BD0288298523D200482C44 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD0287298523D200482C44 /* LoginView.swift */; };
+		B2C9DEF2299FC2560081889B /* FavoritesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C9DEF1299FC2560081889B /* FavoritesResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		B2BD02812985207800482C44 /* FavoritesLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesLoginController.swift; sourceTree = "<group>"; };
 		B2BD0283298522EE00482C44 /* FavoritesRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRegisterController.swift; sourceTree = "<group>"; };
 		B2BD0287298523D200482C44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B2C9DEF1299FC2560081889B /* FavoritesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			children = (
 				B21C9A9F297181B900B806A0 /* SearchResult.swift */,
 				B25F459F297ED8FE00223E10 /* FullIInfoMovieResult.swift */,
+				B2C9DEF1299FC2560081889B /* FavoritesResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				B21C9AA82971982D00B806A0 /* VerticalStackView.swift in Sources */,
 				B2B51FBA297A90BC0037B82F /* FullInfoMovieCell.swift in Sources */,
 				B2B51FBC297A952B0037B82F /* FullInfoMovieController.swift in Sources */,
+				B2C9DEF2299FC2560081889B /* FavoritesResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

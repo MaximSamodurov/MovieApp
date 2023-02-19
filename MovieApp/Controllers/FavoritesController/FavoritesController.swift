@@ -4,33 +4,55 @@ import UIKit
 class FavoritesController: BaseListController, UICollectionViewDelegateFlowLayout {
  
     fileprivate let cellId = "cellId"
-    
-    let favoritesView = FavoritesView()
-    
-    var testPassInfo = "here is test pass info"
-    
-    // если включить этот объект то приложение не запускается
-    // let movieSearchController = MovieSearchController()
-    
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(FavoritesView.self, forCellWithReuseIdentifier: cellId)
-        // разобраться почему нужно этот объект пихать в вью дид лоад Хотя другие в других контрллерах оставлял вне viewDidLoad
-        // наверно поотому что это контроллер а не вью как в кейсах до этого
-        // let movieSearchController = MovieSearchController()
         self.collectionView.reloadData()
+        fetchFavorites()
+    }
+    
+    var favoritesResult: FavoritesResult?
+    
+//    var searchTerm = StorageService.shared.retrive()
+    
+    func fetchFavorites() {
+        
+        // передать сюда searchTerm
+        Service.shared.fetchFavorites(searchTerm: "tt3896198") { (results, error) in
+            
+            if let error = error {
+                print("Failed to fetch movies", error)
+                return
+            }
+            
+            self.favoritesResult = results
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return StorageService.shared.retrive().count
+       return StorageService.shared.retriveTitleArray().count
     }
-    
-    
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FavoritesView
-        let title = StorageService.shared.retrive()[indexPath.item]
-        cell.titleMovieData.text = title
+        let title = StorageService.shared.retriveTitleArray()[indexPath.item]
+        let year = StorageService.shared.retriveYearArray()[indexPath.item]
+        let genre = StorageService.shared.retriveGenreArray()[indexPath.item]
+        let pic = StorageService.shared.retrivePicArray()[indexPath.item]
+        cell.nameLabel.text = title
+        cell.yearLabel.text = year
+        cell.movieType.text = genre
+        if pic != "N/A" {
+            cell.posterImage.downloaded(from: pic)
+        } else {
+            cell.posterImage.image = cell.noImage.image
+        }
+//        cell.movieType.text = result?.genre
+        
         return cell
     }
     

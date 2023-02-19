@@ -66,13 +66,23 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
             cell.fullPosterImage.image = UIImage(named: "no-image")
         }
         cell.likeButton.addTarget(self, action: #selector(likeButtonDidTapped), for: .touchUpInside)
-
+        
         return cell
     }
     
+    var isButtonLiked = false
 
+    // сделать так что бы кнопка реагировала как тумблер
     @objc func likeButtonDidTapped() {
-        StorageService.shared.store(title: fullIInfoMovieResult?.title ?? "")
+        if isButtonLiked == false {
+            StorageService.shared.store(title: fullIInfoMovieResult?.title ?? "", year: fullIInfoMovieResult?.year ?? "", genre: fullIInfoMovieResult?.genre ?? "", pic: fullIInfoMovieResult?.poster ?? "")
+            isButtonLiked = true
+        } else {
+//            StorageService.shared.imbd.removeAll { title in
+//                return title == fullIInfoMovieResult?.imdbID
+//            }
+            print("delete")
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

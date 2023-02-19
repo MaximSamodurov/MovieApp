@@ -38,7 +38,6 @@ class SearchResultCell: UICollectionViewCell {
         nameLabel,
         yearLabel,
         movieType,
-//        likeImage
         ], spacing: 7)
         
         let infoAlignmentStackView = UIStackView(arrangedSubviews: [infoStackView])

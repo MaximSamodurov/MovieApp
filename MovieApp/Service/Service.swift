@@ -35,7 +35,7 @@ class Service {
         let url = "https://www.omdbapi.com/?i=\(selectedItem)&apikey=1918ecd5"
         
         guard let urlString = URL(string: url) else { return }
-    
+        
         URLSession.shared.dataTask(with: urlString) { data, response, error in
         
             if let error = error {
@@ -52,6 +52,31 @@ class Service {
                 print("Failed to decode", error)
             }
         }.resume()
+    }
+    
+    func fetchFavorites(searchTerm: String, completion: @escaping (FavoritesResult, Error?) -> ()) {
+        
+        let url = "https://www.omdbapi.com/?i=\(searchTerm)&apikey=1918ecd5"
+        
+        guard let urlString = URL(string:  url) else { return }
+        
+        URLSession.shared.dataTask(with: urlString) { data, response, error in
+
+            if let error = error {
+                print("error fetching", error)
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let searchResult = try JSONDecoder().decode(FavoritesResult.self, from: data)
+                completion(searchResult, nil)
+                
+            } catch {
+                print("Failed to decode", error)
+            }
+        } .resume()
     }
 }
 

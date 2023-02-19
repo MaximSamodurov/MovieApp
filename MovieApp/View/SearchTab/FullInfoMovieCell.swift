@@ -2,7 +2,9 @@
 import UIKit
 
 class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayout {
-
+    
+    var fullInfoController: FullInfoMovieController?
+    
     let fullPosterImage: UIImageView = {
         let pv = UIImageView()
         pv.downloaded(from: "")
@@ -10,7 +12,7 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
         pv.layer.cornerRadius = 15
         return pv
     }()
-
+        
     let likeButton: UIButton = {
         let li = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 20)
@@ -84,6 +86,5 @@ class FullInfoMovieCell: UICollectionViewCell, UICollectionViewDelegateFlowLayou
     }
 
 }
-
 
 

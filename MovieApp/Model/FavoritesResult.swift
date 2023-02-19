@@ -2,7 +2,7 @@
 import Foundation
 
 
-struct FullIInfoMovieResult: Decodable {
+struct FavoritesResult: Decodable {
     let title: String
     let plot: String
     let director: String
