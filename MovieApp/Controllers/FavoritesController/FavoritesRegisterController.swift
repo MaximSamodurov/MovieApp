@@ -16,7 +16,7 @@ class FavoritesRegisterController: UIViewController {
         view.addSubview(registerView)
         registerView.fillSuperview()
         registerView.registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
     }
     
     

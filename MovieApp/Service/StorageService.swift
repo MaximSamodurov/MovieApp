@@ -1,37 +1,30 @@
 
 import Foundation
+import Firebase
 
 class StorageService {
     
+    let user = Auth.auth().currentUser?.uid
+    
+    
     static let shared = StorageService()
-    
-    var titleArray: [String] = [] // кабудта файрбес
-    var yearArray: [String] = []
-    var genreArray: [String] = []
-    var picArray: [String] = []
-    
-    // сохраниение в файрбейс
-    
+        
+    var favoritesObjectArray: [FavoritesObjectArray] = [] // какбудта файрбейс
+        
     func store(title: String, year: String, genre: String, pic: String) {
-        titleArray.append(title)
-        yearArray.append(year)
-        genreArray.append(genre)
-        picArray.append(pic)
+        var ref = Database.database().reference().child("users").child(String(user!))
+        favoritesObjectArray.append(FavoritesObjectArray(title: title, year: year, genre: genre, picture: pic))
+        ref.setValue(["title": title, "year": year, "genre": genre, "pic": pic])
     }
     
-    func retriveTitleArray() -> [String] {
-        return titleArray
-        // тянем с файрбейс
+    func retrieve() -> [FavoritesObjectArray] {
+        return favoritesObjectArray
     }
-    func retriveYearArray() -> [String] {
-        return yearArray
-        // тянем с файрбейс
-    }
-    func retriveGenreArray() -> [String] {
-        return genreArray
-        // тянем с файрбейс
-    }
-    func retrivePicArray() -> [String] {
-        return picArray
-    }
+}
+
+struct FavoritesObjectArray {
+    let title: String
+    let year: String
+    let genre: String
+    let picture: String
 }

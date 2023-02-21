@@ -38,6 +38,8 @@
 		B2BD0284298522EE00482C44 /* FavoritesRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD0283298522EE00482C44 /* FavoritesRegisterController.swift */; };
 		B2BD0288298523D200482C44 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD0287298523D200482C44 /* LoginView.swift */; };
 		B2C9DEF2299FC2560081889B /* FavoritesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C9DEF1299FC2560081889B /* FavoritesResult.swift */; };
+		B2C9DF3A29A286E40081889B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C9DF3929A286E40081889B /* User.swift */; };
+		B2C9DF3C29A286F70081889B /* FavoritesSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C9DF3B29A286F70081889B /* FavoritesSave.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		B2BD0283298522EE00482C44 /* FavoritesRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRegisterController.swift; sourceTree = "<group>"; };
 		B2BD0287298523D200482C44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B2C9DEF1299FC2560081889B /* FavoritesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesResult.swift; sourceTree = "<group>"; };
+		B2C9DF3929A286E40081889B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B2C9DF3B29A286F70081889B /* FavoritesSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSave.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 				B21C9A9F297181B900B806A0 /* SearchResult.swift */,
 				B25F459F297ED8FE00223E10 /* FullIInfoMovieResult.swift */,
 				B2C9DEF1299FC2560081889B /* FavoritesResult.swift */,
+				B2C9DF3D29A286FE0081889B /* SaveUser */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +223,15 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+		B2C9DF3D29A286FE0081889B /* SaveUser */ = {
+			isa = PBXGroup;
+			children = (
+				B2C9DF3929A286E40081889B /* User.swift */,
+				B2C9DF3B29A286F70081889B /* FavoritesSave.swift */,
+			);
+			path = SaveUser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,6 +316,7 @@
 				B21C9A9E297168B800B806A0 /* BaseListController.swift in Sources */,
 				B2BD02822985207800482C44 /* FavoritesLoginController.swift in Sources */,
 				B2BD027F29840E0900482C44 /* ActivityIndicator.swift in Sources */,
+				B2C9DF3C29A286F70081889B /* FavoritesSave.swift in Sources */,
 				B21C9AFB2972BC9A00B806A0 /* Extensions.swift in Sources */,
 				B244E0902970438000690A48 /* MovieSearchController.swift in Sources */,
 				B2BD0284298522EE00482C44 /* FavoritesRegisterController.swift in Sources */,
@@ -319,6 +334,7 @@
 				B287C4B329755814007A727F /* Service.swift in Sources */,
 				B244E0582970385700690A48 /* AppDelegate.swift in Sources */,
 				B21C9AA82971982D00B806A0 /* VerticalStackView.swift in Sources */,
+				B2C9DF3A29A286E40081889B /* User.swift in Sources */,
 				B2B51FBA297A90BC0037B82F /* FullInfoMovieCell.swift in Sources */,
 				B2B51FBC297A952B0037B82F /* FullInfoMovieController.swift in Sources */,
 				B2C9DEF2299FC2560081889B /* FavoritesResult.swift in Sources */,

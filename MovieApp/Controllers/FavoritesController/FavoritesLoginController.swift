@@ -30,9 +30,17 @@ class FavoritesLoginController: UIViewController {
         loginView.fillSuperview()
         loginView.orLabelRegisterButton.addTarget(self, action: #selector(pushToFavoritesLoginController), for: .touchUpInside)
         loginView.loginButton.addTarget(self, action: #selector(signInHandler), for: .touchUpInside)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
+        
+        // if user already logined make transition to favorites
+        
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if user != nil {
+//                self.navigationController?.pushViewController(self.favoritesController, animated: true)
+//            }
+//        }
     }
-    
+        
     // Firebase Login
     func loginUser(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -45,8 +53,9 @@ class FavoritesLoginController: UIViewController {
                 return
             }
             
-            print("Succefully logged user in...")
             self.navigationController?.pushViewController(self.favoritesController, animated: true)
+            print("Succefully logged user in...")
+
         }
     }
 }

@@ -1,5 +1,6 @@
 
 import UIKit
+import Firebase
 
 class FavoritesController: BaseListController, UICollectionViewDelegateFlowLayout {
  
@@ -9,50 +10,40 @@ class FavoritesController: BaseListController, UICollectionViewDelegateFlowLayou
         super.viewDidLoad()
         collectionView.register(FavoritesView.self, forCellWithReuseIdentifier: cellId)
         self.collectionView.reloadData()
-        fetchFavorites()
+//        fetchFavorites()
+        navigationItem.hidesBackButton = true;
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButton))
     }
+    
+    @objc func logOutButton() {
+        do {
+            try Auth.auth().signOut()
+            print("Log Out succefully")
+        } catch {
+            print(error.localizedDescription)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     
     var favoritesResult: FavoritesResult?
-    
-//    var searchTerm = StorageService.shared.retrive()
-    
-    func fetchFavorites() {
-        
-        // передать сюда searchTerm
-        Service.shared.fetchFavorites(searchTerm: "tt3896198") { (results, error) in
-            
-            if let error = error {
-                print("Failed to fetch movies", error)
-                return
-            }
-            
-            self.favoritesResult = results
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return StorageService.shared.retriveTitleArray().count
+        return StorageService.shared.favoritesObjectArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FavoritesView
-        let title = StorageService.shared.retriveTitleArray()[indexPath.item]
-        let year = StorageService.shared.retriveYearArray()[indexPath.item]
-        let genre = StorageService.shared.retriveGenreArray()[indexPath.item]
-        let pic = StorageService.shared.retrivePicArray()[indexPath.item]
-        cell.nameLabel.text = title
-        cell.yearLabel.text = year
-        cell.movieType.text = genre
-        if pic != "N/A" {
-            cell.posterImage.downloaded(from: pic)
+        let result = StorageService.shared.retrieve()[indexPath.item]
+        cell.nameLabel.text = result.title
+        cell.yearLabel.text = result.year
+        cell.movieType.text = result.genre
+        if result.picture != "N/A" {
+            cell.posterImage.downloaded(from: result.picture)
         } else {
             cell.posterImage.image = cell.noImage.image
         }
-//        cell.movieType.text = result?.genre
-        
         return cell
     }
     
