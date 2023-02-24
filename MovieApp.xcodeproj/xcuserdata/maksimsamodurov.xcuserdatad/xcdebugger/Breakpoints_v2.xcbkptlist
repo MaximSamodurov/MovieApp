@@ -179,114 +179,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "9"
-            endingLineNumber = "9"
-            landmarkName = "FavoritesController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5 - 8450ecd3f729cc3c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieApp.FavoritesController.ref.getter : Swift.Optional&lt;__C.FIRDatabaseReference&gt;"
-                  moduleName = "MovieApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksimsamodurov/Development%20Projects/MovieApp/MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10"
-                  offsetFromSymbolStart = "94">
-               </Location>
-               <Location
-                  uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5 - 698be7b3fa578c28"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieApp.FavoritesController.ref.setter : Swift.Optional&lt;__C.FIRDatabaseReference&gt;"
-                  moduleName = "MovieApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksimsamodurov/Development%20Projects/MovieApp/MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5 - 6b4dff8666e34c3b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieApp.FavoritesController.ref.modify : Swift.Optional&lt;__C.FIRDatabaseReference&gt;"
-                  moduleName = "MovieApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksimsamodurov/Development%20Projects/MovieApp/MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5 - 3d071537ca471d0d"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieApp.FavoritesController.ref.modify : Swift.Optional&lt;__C.FIRDatabaseReference&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "MovieApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksimsamodurov/Development%20Projects/MovieApp/MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5 - 25fb956d9352ce2c"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieApp.FavoritesController.init() -&gt; MovieApp.FavoritesController"
-                  moduleName = "MovieApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksimsamodurov/Development%20Projects/MovieApp/MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  uuid = "9BB97C91-128A-42F4-A674-DEA024174DE5 - dda0039589a02db5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieApp.FavoritesController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MovieApp.FavoritesController&gt;"
-                  moduleName = "MovieApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/maksimsamodurov/Development%20Projects/MovieApp/MovieApp/Controllers/FavoritesController/FavoritesController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10"
-                  offsetFromSymbolStart = "150">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7119334F-8EC1-4213-9D7C-E208C38D13DC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -297,6 +189,22 @@
             startingLineNumber = "30"
             endingLineNumber = "30"
             landmarkName = "init(snapshot:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CDB867EE-5C2A-4B6A-9E56-E5647C79AB6E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieApp/Controllers/FavoritesController/FavoritesController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

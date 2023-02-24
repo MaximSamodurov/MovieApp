@@ -1,8 +1,8 @@
 
 import UIKit
 
-class FavoritesView: UICollectionViewCell {
-
+class FavoritesView: UITableViewCell {
+    
     let posterImage: UIImageView = {
         let pi = UIImageView()
         pi.downloaded(from: "")
@@ -28,16 +28,26 @@ class FavoritesView: UICollectionViewCell {
     let yearLabel = UILabel(text: "Year", font: .boldSystemFont(ofSize: 20))
     let movieType = UILabel(text: "Rating", font: .systemFont(ofSize: 20))
     
-
+//    let deleteButton: UIButton = {
+//        let li = UIButton()
+//        let config = UIImage.SymbolConfiguration(pointSize: 20)
+//        li.tintColor = .red
+//        li.setImage(UIImage(systemName: "suit.heart", withConfiguration: config), for: .normal)
+//        return li
+//    }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+        
+    
         
         let infoStackView = VerticalStackView(arrangedSubViews: [
-        UIView(),
-        nameLabel,
-        yearLabel,
-        movieType,
+            UIView(),
+            nameLabel,
+            yearLabel,
+            movieType,
+//            deleteButton
         ], spacing: 7)
         
         let infoAlignmentStackView = UIStackView(arrangedSubviews: [infoStackView])
@@ -52,6 +62,6 @@ class FavoritesView: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
     }
-    
 }
