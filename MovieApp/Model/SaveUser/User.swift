@@ -13,12 +13,11 @@ struct User {
     let uidData: String
     let emailData: String
     
-    // инициализтор принимает готового юзера
-//    init(user: Auth.auth().currentUser) {
-//        self.uid = user.uid
-//        self.email = user.email!
-//    }
-        
+//     инициализтор принимает готового юзера
+    init(user: FirebaseAuth.User) {
+        self.uidData = user.uid
+        self.emailData = user.email!
+    }        
 }
 
 

@@ -7,6 +7,8 @@ class FavoritesRegisterController: UIViewController {
     
     let registerView = RegisterView(frame: CGRect.zero)
     let favoritesController = FavoritesController()
+    var ref: DatabaseReference!
+    let user: User! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,7 @@ class FavoritesRegisterController: UIViewController {
         view.addSubview(registerView)
         registerView.fillSuperview()
         registerView.registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        ref = Database.database().reference(withPath: "users")
 //        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: nil, action: nil)
     }
     
@@ -47,24 +50,23 @@ class FavoritesRegisterController: UIViewController {
             }
             
             guard let uid = result?.user.uid else { return }
-            let values = ["email": email]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
+            let values = ["email": email]
+            3
+            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: { [weak self] (error, ref) in
                 
                 if let error = error {
                     print("Failed to updateDatabase values", error)
                     return
                 }
+                let userRef = self?.ref.child((self?.user.uidData)!)
+                userRef?.setValue(["email": self?.user.emailData])
                 print("Succesfully Signed Up User")
                 #warning("НЕ РАБОТЕТ ПЕРЕХОД НА FavoritesController")
             })
-            
         }
     }
 }
-
-
-
 
 // MARK: - Extensions
 

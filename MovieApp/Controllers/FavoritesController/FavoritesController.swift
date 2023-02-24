@@ -5,7 +5,9 @@ import Firebase
 class FavoritesController: BaseListController, UICollectionViewDelegateFlowLayout {
  
     fileprivate let cellId = "cellId"
-            
+//    var user: User!
+//    var ref: DatabaseReference!
+                
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(FavoritesView.self, forCellWithReuseIdentifier: cellId)
@@ -13,6 +15,7 @@ class FavoritesController: BaseListController, UICollectionViewDelegateFlowLayou
 //        fetchFavorites()
         navigationItem.hidesBackButton = true;
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButton))
+        loadData()
     }
     
     @objc func logOutButton() {
@@ -24,18 +27,33 @@ class FavoritesController: BaseListController, UICollectionViewDelegateFlowLayou
         }
         self.navigationController?.popViewController(animated: true)
     }
+
+//    var favoritesResult: FavoritesResult?
+    var favoritesSave = Array<FavoritesSave>()
     
-    
-    
-    var favoritesResult: FavoritesResult?
+    private func loadData() {
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { snapshot in
+            print(snapshot)
+            var saveArray = Array<FavoritesSave>()
+            for item in snapshot.children {
+                
+                let favoritesSave = FavoritesSave(snapshot: item as! DataSnapshot)
+                print(favoritesSave)
+                saveArray.append(favoritesSave)
+            }
+            self.favoritesSave = saveArray
+            self.collectionView.reloadData()
+        }
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return StorageService.shared.favoritesObjectArray.count
+        return favoritesSave.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FavoritesView
-        let result = StorageService.shared.retrieve()[indexPath.item]
+        let result = favoritesSave[indexPath.item]
         cell.nameLabel.text = result.title
         cell.yearLabel.text = result.year
         cell.movieType.text = result.genre

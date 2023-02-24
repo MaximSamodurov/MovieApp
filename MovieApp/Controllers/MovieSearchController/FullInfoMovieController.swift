@@ -1,18 +1,25 @@
 
 
 import UIKit
+import Firebase
 
 class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowLayout, ActivityIndicator {
 
     let cellId = "cellId"
     let activityIndicator = UIActivityIndicatorView()
-    
+    var user: User!
+    var ref: DatabaseReference!
+    var favoritesSave = Array<FavoritesSave>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivityIndicator()
         collectionView.register(FullInfoMovieCell.self, forCellWithReuseIdentifier: cellId)
         fetchFullInfo()
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = User(user: currentUser)
+        ref = Database.database().reference(withPath: "users").child(String(user.uidData))
     }
 
     // init for captured data (imbdID Code) from Movie Search Controller
@@ -75,12 +82,12 @@ class FullInfoMovieController: BaseListController, UICollectionViewDelegateFlowL
     // сделать так что бы кнопка реагировала как тумблер
     @objc func likeButtonDidTapped() {
         if isButtonLiked == false {
-            StorageService.shared.store(title: fullIInfoMovieResult?.title ?? "", year: fullIInfoMovieResult?.year ?? "", genre: fullIInfoMovieResult?.genre ?? "", pic: fullIInfoMovieResult?.poster ?? "")
+            let favortiesSave = FavoritesSave(title: fullIInfoMovieResult?.title ?? "", year: fullIInfoMovieResult?.year ?? "", genre: fullIInfoMovieResult?.genre ?? "", picture: fullIInfoMovieResult?.poster ?? "", userID: user.uidData)
+            let favoritesSaveRef = self.ref.child(favortiesSave.title.lowercased())
+            favoritesSaveRef.setValue(["title": favortiesSave.title, "year": favortiesSave.year, "genre": favortiesSave.genre, "picture": favortiesSave.picture, "userID": favortiesSave.userID])
+//            StorageService.shared.store(title: fullIInfoMovieResult?.title ?? "", year: fullIInfoMovieResult?.year ?? "", genre: fullIInfoMovieResult?.genre ?? "", pic: fullIInfoMovieResult?.poster ?? "")
             isButtonLiked = true
         } else {
-//            StorageService.shared.imbd.removeAll { title in
-//                return title == fullIInfoMovieResult?.imdbID
-//            }
             print("delete")
         }
     }
